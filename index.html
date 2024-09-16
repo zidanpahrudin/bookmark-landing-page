@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+      @font-face {
+        font-family: "Rubik", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+      }
+
+      @font-face {
+        font-family: "Rubik", sans-serif;
+        font-style: bold;
+        font-weight: 500;
+        src: url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+      }
+    }
+
+    summary::marker {
+      content: none;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans-serif': ['Rubik', 'sans-serif'],
+          },
+          colors: {
+            softBlue: "hsl(231, 69%, 60%)",
+            softRed: "hsl(0, 94%, 66%)",
+            grayishBlue: "hsl(229, 8%, 60%)",
+            veryDarkBlue: "hsl(229, 31%, 21%)",
+            veryDarkBlue_03: "hsla(229, 31%, 21%, 0.3)"
+          }
+        }
+      }
+    }
+  </script>
+  <title>Frontend Mentor | Bookmark landing page</title>
+</head>
+
+<body>
+  <main class="text-center overflow-x-hidden">
+
+    <div class="flex justify-between items-center px-8 pb-16 pt-8 md:px-32">
+      <div>
+        <img src="./images/logo-bookmark.svg" alt="">
+      </div>
+      <nav class="hidden sm:block">
+        <ul class="flex gap-6 items-center">
+          <li class="py-2 border-y border-white/20">Features</li>
+          <li class="py-2 border-y border-white/20">Pricing</li>
+          <li class="py-2 border-y border-white/20">Contact</li>
+          <li>
+            <button class="bg-softRed font-bold text-white px-8 py-2 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">
+              Login
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <button class="sm:hidden" id="hamburger">
+        <img src="./images/icon-hamburger.svg" alt="">
+      </button>
+    </div>
+
+    <nav id="nav" class="fixed sm:hidden z-50 top-0 left-0 z-10 scale-0 transition-all ease-in-out delay-250">
+      <div class="bg-veryDarkBlue w-screen h-screen z-0 opacity-95"></div>
+      <ul
+        class="uppercase grid grid-cols-1 grid-rows-[repeat(5,auto),1fr] h-full items-start gap-4 text-white left-0 w-full absolute top-0 px-5 py-8">
+        <li class="flex justify-between mb-5 ">
+          <img src="./images/logo-nav.svg" alt="">
+          <button id="close">
+            <img src="./images/icon-close.svg" alt="" srcset="">
+          </button>
+        </li>
+        <li class="py-2 border-y border-white/20">Features</li>
+        <li class="py-2 border-y border-white/20">Pricing</li>
+        <li class="py-2 border-y border-white/20">Contact</li>
+        <li class="border-2">
+          <button class="w-full p-2 uppercase">
+            Login
+          </button>
+        </li>
+        <li class="self-end">
+          <img class="inline-block mr-8" src="./images/icon-facebook.svg" alt="">
+          <img class="inline-block" src="./images/icon-twitter.svg" alt="">
+        </li>
+      </ul>
+    </nav>
+
+    <section class="mb-16 ml-8 md:ml-32 md:flex md:items-center md:justify-between md:text-left relative">
+      <div class="bg-softBlue absolute right-0 inset-y-24 h-2/6 md:h-4/6 w-4/5 md:w-2/5 -z-10 rounded-l-full"></div>
+      <figure class="mb-16 relative order-2 md:mr-20">
+        <img src="./images/illustration-hero.svg" class="z-20" alt="">
+      </figure>
+      <div class="md:max-w-md pr-8">
+        <h2 class="text-3xl md:text-4xl text-veryDarkBlue font-semibold leading-snug">A Simple Bookmark Manager</h2>
+        <p class="leading-snug text-grayishBlue text-[1rem] sm:px-0 pt-6 pb-8">A clean and simple interface to organize
+          your favourite websites. Open a new
+          browser tab and see your sites load instantly. Try it for free.</p>
+        <div class="flex justify-center gap-4 md:justify-start">
+          <button
+            class="bg-softBlue font-[500] text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">Get
+            it on Chrome</button>
+          <button
+            class="bg-neutral-100 font-[500] text-veryDarkBlue px-5 py-3 text-sm rounded-md shadow-lg shadow-neutral-300">Get
+            it on Firefox</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="w-12/12 md:w-7/12 lg:w-4/12 mx-auto">
+        <h2 class="text-2xl text-veryDarkBlue font-bold leading-snug">Features</h2>
+        <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8 px-4">
+          Our aim is to make it quick and easy for you to access your favourite websites.
+          Your bookmarks sync between your devices so you can access them on the go.
+        </p>
+      </div>
+
+      <div class="flex flex-col w-1/2 justify-center mx-auto md:flex-row md:border-b-2 md:gap-10 gap-4 mb-20">
+        <button data-title="Bookmark in one click"
+          data-desc="Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites."
+          data-image="./images/illustration-features-tab-1.svg"
+          class="feature text-lg border-y-2 md:border-none py-4 font-[500] relative text-veryDarkBlue">
+          Simple Bookmarking
+          <span class="h-1 w-1/2 md:w-full left-1/2 transform -translate-x-1/2 bottom-0 absolute bg-softRed"></span>
+        </button>
+        <button data-title="Intelligent search" data-desc="Our powerful search feature will help you find saved sites in no time at all.
+        No need to trawl through all of your bookmarks." data-image="./images/illustration-features-tab-2.svg"
+          class="feature text-lg border-b-2 md:border-none pb-4 font-[500] relative text-grayishBlue">
+          Speedy Searching
+          <span class="hidden h-1 w-1/2 md:w-full left-1/2 transform -translate-x-1/2 bottom-0 absolute bg-softRed"></span>
+
+        </button>
+        <button data-title="Share your bookmarks" data-desc="Easily share your bookmarks and collections with others. Create a shareable
+        link that you can send at the click of a button." data-image="./images/illustration-features-tab-3.svg"
+          class="feature text-lg border-b-2 md:border-none pb-4 font-[500] relative text-grayishBlue">
+          Easy Sharing
+          <span class="hidden h-1 w-1/2 md:w-full left-1/2 transform -translate-x-1/2 bottom-0 absolute bg-softRed"></span>
+        </button>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center justify-center gap-10 relative">
+
+        <div class="bg-softBlue absolute left-0 inset-y-24 h-2/6 md:h-4/6 w-4/5 md:w-2/5 -z-10 rounded-r-full"></div>
+        <figure class="relative mb-20 mx-5">
+          <img src="./images/illustration-features-tab-1.svg" id="tab_image" class="z-20 relative" alt="">
+
+        </figure>
+
+        <div class="w-12/12 md:w-7/12 lg:w-4/12 md:text-left pt-4 pb-8 px-4">
+          <h2 id="title" class="text-2xl md:text-3xl text-veryDarkBlue font-semibold leading-snug">Bookmark in one click</h2>
+  
+          <p id="desc" class="leading-snug text-grayishBlue text-[1rem]">
+            Organize your bookmarks however you like. Our simple drag-and-drop interface
+            gives you complete control over how you manage your favourite sites.
+          </p>
+  
+          <button class="my-8 bg-softBlue font-bold text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">More Info</button>
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <section class="mx-8 md:mx-32 mb-16 h-full">
+      <div class="lg:w-[33%] md:mx-auto">
+        <h2 class="text-2xl text-veryDarkBlue font-bold leading-snug">Download the extension</h2>
+        <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8">
+          We’ve got more browsers in the pipeline. Please do let us know if you’ve
+          got a favourite you’d like us to prioritize.
+        </p>
+      </div>
+
+      <div class="grid md:justify-center md:grid-cols-[20rem_20rem_20rem] gap-10 md:h-[35rem]">
+
+        <div class="shadow-lg self-start shadow-neutral-300 m-3 pt-10 px-5 pb-5 rounded-lg relative">
+          <img class="mx-auto" src="./images/logo-chrome.svg" alt="">
+          <div class="mt-10 mb-16">
+            <h4 class="text-xl text-veryDarkBlue font-bold leading-snug">Add to Chrome</h4>
+            <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8 px-4">Minimum version 62</p>
+          </div>
+          <div class="absolute left-0 top-3/4 border-t-2 border-dashed border-neutral-300" style="width: 100%;"></div>
+
+          <button
+            class="bg-softBlue font-[500] text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">
+            Add & Install Extension
+          </button>
+        </div>
+
+        <div class="shadow-lg self-center shadow-neutral-300 m-3 pt-10 px-5 pb-5 rounded-lg relative">
+          <img class="mx-auto" src="./images/logo-firefox.svg" alt="">
+          <div class="mt-10 mb-16">
+            <h4 class="text-xl text-veryDarkBlue font-bold leading-snug">Add to Firefox</h4>
+            <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8 px-4">Minimum version 55</p>
+          </div>
+          <div class="absolute left-0 top-3/4 border-t-2 border-dashed border-neutral-300" style="width: 100%;"></div>
+
+          <button
+            class="bg-softBlue font-[500] text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">
+            Add & Install Extension
+          </button>
+        </div>
+
+        <div class="shadow-lg self-end shadow-neutral-300 m-3 pt-10 px-5 pb-5 rounded-lg relative">
+          <img class="mx-auto" src="./images/logo-opera.svg" alt="">
+          <div class="mt-10 mb-16">
+            <h4 class="text-xl text-veryDarkBlue font-bold leading-snug">Add to Opera</h4>
+            <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8 px-4">Minimum version 46</p>
+          </div>
+          <div class="absolute left-0 top-3/4 border-t-2 border-dashed border-neutral-300" style="width: 100%;"></div>
+
+          <button
+            class="bg-softBlue font-[500] text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">
+            Add & Install Extension
+          </button>
+        </div>
+
+
+      </div>
+
+    </section>
+
+    <section class="mb-16">
+      <div class="md:w-[33%] md:mx-auto">
+        <h2 class="text-2xl text-veryDarkBlue font-bold leading-snug">Frequently Asked Questions</h2>
+        <p class="leading-snug text-grayishBlue text-[1rem] pt-4 pb-8 px-4">
+          Here are some of our FAQs. If you have any other questions you’d like
+          answered please feel free to email us.
+        </p>
+      </div>
+
+      <div class="p-10 lg:w-[40%] md:mx-auto">
+        <details class="border-b-2 summary_custom py-4">
+          <summary class="flex justify-between content-center items-center font-[500] text-normal text-veryDarkBlue">
+            What is Bookmark?
+            <img src="./images/icon-arrow.svg" alt="">
+          </summary>
+          <p class="text-left text-grayishBlue pt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+            tincidunt
+            justo eget ultricies fringilla. Phasellus blandit ipsum quis quam ornare mattis.</p>
+        </details>
+  
+        <details class="border-b-2 summary_custom py-4">
+          <summary class="flex justify-between content-center items-center font-[500] text-normal text-veryDarkBlue">
+            How can I request a new browser?
+            <img src="./images/icon-arrow.svg" alt="">
+          </summary>
+          <p class="text-left text-grayishBlue pt-5">Vivamus luctus eros aliquet convallis ultricies. Mauris augue massa,
+            ultricies non ligula.
+            Suspendisse imperdiet. Vivamus luctus eros aliquet convallis ultricies. Mauris augue massa,
+            ultricies non ligula. Suspendisse imperdie tVivamus luctus eros aliquet convallis ultricies.
+            Mauris augue massa, ultricies non ligula. Suspendisse imperdiet.</p>
+        </details>
+  
+        <details class="border-b-2 summary_custom py-4">
+          <summary class="flex justify-between content-center items-center font-[500] text-normal text-veryDarkBlue">
+            Is there a mobile app?
+            <img src="./images/icon-arrow.svg" alt="">
+          </summary>
+          <p class="text-left text-grayishBlue pt-5">Sed consectetur quam id neque fermentum accumsan. Praesent luctus
+            vestibulum dolor, ut condimentum
+            urna vulputate eget. Cras in ligula quis est pharetra mattis sit amet pharetra purus. Sed
+            sollicitudin ex et ultricies bibendum.</p>
+        </details>
+  
+        <details class="border-b-2 summary_custom py-4">
+          <summary class="flex justify-between content-center items-center font-[500] text-normal text-veryDarkBlue">
+            What about other Chromium browsers?
+            <img src="./images/icon-arrow.svg" alt="">
+  
+          </summary>
+          <p class="text-left text-grayishBlue pt-5">Integer condimentum ipsum id imperdiet finibus. Vivamus in placerat
+            mi, at euismod dui. Aliquam
+            vitae neque eget nisl gravida pellentesque non ut velit.</p>
+        </details>
+      </div>
+
+
+      <button
+        class="my-8 bg-softBlue font-bold text-white px-5 py-3 text-sm rounded-md shadow-md shadow-veryDarkBlue_03">
+        More Info
+      </button>
+    </section>
+
+
+    <footer class="text-white absolute w-full left-0">
+      <div class="bg-softBlue pt-16 px-5 pb-16">
+        <p class="text-sm font-[600] uppercase tracking-[.2rem] pb-2">
+          35,000+ already joined
+        </p>
+        <h3 class="text-2xl font-[600] pb-8">
+          Stay up-to-date with what we’re doing
+        </h3>
+
+        <form class="flex flex-col md:flex-row justify-center gap-4 ">
+          <input class="rounded-md p-4 w-12/12 md:w-3/12" type="email" required placeholder="Enter your email address">
+          <button class="bg-softRed rounded-md font-[600] p-4">
+            Contact Us
+          </button>
+        </form>
+      </div>
+
+      <div class="flex flex-col gap-10 md:flex-row justify-between bg-veryDarkBlue py-12 md:py-6 md:px-32">
+        <div class="flex flex-col md:flex-row items-center gap-4 items-center text-lg">
+          <img src="./images/logo-bookmark_white.svg" alt="">
+          <p>
+            Features
+          </p>
+          <p>
+            Pricing
+          </p>
+          <p>
+            Contact
+          </p>
+        </div>
+
+        <div>
+          <img class="inline-block mr-5" src="./images/icon-facebook.svg" alt="">
+          <img class="inline-block" src="./images/icon-twitter.svg" alt="">
+        </div>
+
+      </div>
+
+
+    </footer>
+
+  </main>
+
+  <!-- menu -->
+  <script>
+    const close = document.querySelector("#close");
+    const hamburger = document.querySelector("#hamburger");
+    const nav = document.querySelector("#nav");
+
+    close.addEventListener("click", function (e) {
+      nav.classList.remove("scale-100");
+    });
+
+    hamburger.addEventListener("click", function (e) {
+      nav.classList.add("scale-100");
+    });
+  </script>
+
+  <script>
+    const buttons = document.querySelectorAll(".feature");
+    const tab_image = document.querySelector("#tab_image");
+    const title = document.querySelector("#title");
+    const desc = document.querySelector("#desc");
+
+    buttons.forEach(e => {
+      e.addEventListener("click", function (el) {
+        el.preventDefault()
+        buttons.forEach(btn => {
+
+
+          btn.querySelector("span").classList.add("hidden");
+          btn.classList.remove('text-veryDarkBlue');
+          btn.classList.add('text-grayishBlue');
+        });
+        tab_image.src = e.dataset.image;
+        title.textContent = e.dataset.title;
+        desc.textContent = e.dataset.desc;
+
+        e.querySelector("span").classList.remove("hidden")
+        e.classList.add('text-veryDarkBlue');
+        e.classList.remove('text-grayishBlue');
+
+      })
+    })
+
+  </script>
+
+</body>
+
+</html>
